@@ -1,0 +1,23 @@
+PODS:
+  - JQHoverPage (0.1.0):
+    - WMPageController
+  - WMPageController (2.5.2)
+
+DEPENDENCIES:
+  - JQHoverPage (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - WMPageController
+
+EXTERNAL SOURCES:
+  JQHoverPage:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JQHoverPage: c6a95630f7abb910de17f99fdd38bb85676cb82f
+  WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
+
+PODFILE CHECKSUM: 6c8e852914bec04474bf177a9b511b047cf4ac34
+
+COCOAPODS: 1.5.2
