@@ -1,6 +1,0 @@
-framework module JQHoverPage {
-  umbrella header "JQHoverPage-umbrella.h"
-
-  export *
-  module * { export * }
-}

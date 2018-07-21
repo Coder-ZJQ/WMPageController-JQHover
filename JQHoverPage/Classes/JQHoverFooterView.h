@@ -10,16 +10,18 @@
 
 @class JQPageController;
 
+typedef NS_ENUM(NSInteger, JQHoverTopBounceType) {
+    JQHoverTopBounceTypeMain = 1,   /**< 滑动到顶部时主页面顶部有弹簧效果 */
+    JQHoverTopBounceTypeSub = 2     /**< 滑动到顶部时子页面顶部有弹簧效果 */
+};
+
 /** 利用 WMPageController 封装底部菜单悬浮页面控件 */
 @interface JQHoverFooterView : UIView
 
-/**
- 初始化一个悬浮底部
+/** 显示页面控制器 */
+@property (weak, nonatomic) JQPageController *page;
 
- @param frame 悬浮底部的 frame
- @param page 悬浮底部需显示的相关页面
- @return 实例化的悬浮控件
- */
-- (instancetype)initWithFrame:(CGRect)frame hoverPage:(JQPageController *)page;
+/** 顶部弹簧类型（主页面/子页面） */
+@property (nonatomic) JQHoverTopBounceType topBounceType;
 
 @end

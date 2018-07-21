@@ -15,3 +15,4 @@
 @property (strong, nonatomic) JQHoverFooterView *jq_hoverFooter;
 
 @end
+

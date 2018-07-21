@@ -8,6 +8,6 @@
 
 @import UIKit;
 
-@interface JQViewController : UIViewController
+@interface JQViewController : UITableViewController
 
 @end

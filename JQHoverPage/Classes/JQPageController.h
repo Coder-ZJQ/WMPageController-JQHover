@@ -8,7 +8,7 @@
 
 #import "WMPageController.h"
 
-@protocol JQHoverControllerDelegate <NSObject>
+@protocol JQSubpageControllerDelegate <NSObject>
 
 @property (nonatomic, readonly) UIScrollView *scrollView;
 
@@ -16,6 +16,6 @@
 
 @interface JQPageController : WMPageController
 
-- (UIViewController <JQHoverControllerDelegate> *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index;
+- (UIViewController <JQSubpageControllerDelegate> *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index;
 
 @end

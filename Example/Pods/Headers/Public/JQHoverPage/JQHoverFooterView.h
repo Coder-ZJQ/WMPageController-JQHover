@@ -1,0 +1,1 @@
+../../../../../JQHoverPage/Classes/JQHoverFooterView.h

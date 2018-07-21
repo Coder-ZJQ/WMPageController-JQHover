@@ -17,21 +17,15 @@
 @property (weak, nonatomic) UIScrollView *superScrollView;
 /** 当前子滑动控件 */
 @property (weak, nonatomic) UIScrollView *childScrollView;
-/** 显示页面控制器 */
-@property (weak, nonatomic) JQPageController *pageController;
 
 @end
 
 @implementation JQHoverFooterView
 
-- (instancetype)initWithFrame:(CGRect)frame hoverPage:(JQPageController *)page
-{
-    self = [super initWithFrame:frame];
-    if (self)
-    {
-        self.pageController = page;
-        self.pageController.delegate = self;
-        [self addSubview:page.view];
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        // 设置默认
+        self.topBounceType = JQHoverTopBounceTypeMain;
     }
     return self;
 }
@@ -45,6 +39,11 @@
     self.superScrollView = nil;
 }
 
+- (void)setPage:(JQPageController *)page {
+    _page = page;
+    _page.delegate = self;
+    [self addSubview:page.view];
+}
 /**
  利用 childScrollView 的 setter 方法动态添加/移除监听
 
@@ -90,10 +89,14 @@
 
 - (void)pageController:(WMPageController *)pageController didEnterViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info {
     // 当要移动到其他页面时，设置当前子 UIScrollView
-    UIViewController<JQHoverControllerDelegate> *vc = viewController;
-    if (self.childScrollView != vc.scrollView) {
-        self.childScrollView.jq_offsetY = 0.f;
-        self.childScrollView = vc.scrollView;
+    // 当要移动到其他页面时，设置当前子 UIScrollView
+    if ([viewController conformsToProtocol:@protocol(JQSubpageControllerDelegate)] && [viewController respondsToSelector:@selector(scrollView)]) {
+        UIViewController<JQSubpageControllerDelegate> *vc = viewController;
+        if (self.childScrollView != vc.scrollView)
+        {
+            self.childScrollView.jq_offsetY = 0.f;
+            self.childScrollView = vc.scrollView;
+        }
     }
 }
 
@@ -120,46 +123,62 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context
 {
-    if (object == self.superScrollView)
+    if ([keyPath isEqualToString:@"contentSize"])
     {
-        if (!self.userInteractionEnabled) return;
-        if ([keyPath isEqualToString:@"contentSize"])
-        {
-            CGFloat new = [change[NSKeyValueChangeNewKey] CGSizeValue].height;
-            self.jq_y = new;
-        }
-        if (self.hidden) return;
-        if ([keyPath isEqualToString:@"contentOffset"])
-        {
-            // float 有精度问题，所以判断相等会有问题，故判断差的绝对值个位数是否为0来判读是否到达临界值
-            NSInteger delta = (NSInteger)fabs(self.superScrollView.jq_offsetY - (self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h));
-            if (self.superScrollView.jq_offsetY > self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h)
-            {
-                self.superScrollView.jq_offsetY = self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h;
-            }
-            else if (self.childScrollView &&
-                     self.childScrollView.jq_offsetY > 0 &&
-                     delta != 0)
-            {
-                self.superScrollView.jq_offsetY = self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h;
-            }
-        }
+        CGFloat new = [change[NSKeyValueChangeNewKey] CGSizeValue].height;
+        self.jq_y = new;
         self.jq_w = self.superview.jq_w;
     }
-    else if (object == self.childScrollView)
+    // 以下判断待有时间整理优化
+    else if ([keyPath isEqualToString:@"contentOffset"])
     {
-        // float 有精度问题，所以判断相等会有问题，故判断差的绝对值个位数是否为0来判读是否到达临界值
-        NSInteger delta = (NSInteger)fabs(self.superScrollView.jq_offsetY - (self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h));
-        if (delta == 0)
+        CGFloat new = [change[NSKeyValueChangeNewKey] CGPointValue].y;
+        CGFloat old = [change[NSKeyValueChangeOldKey] CGPointValue].y;
+        if (new == old) return;
+        CGFloat delta = fabs(self.superScrollView.jq_offsetY - (self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h));
+        if (self.superScrollView.jq_offsetY > self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h)
         {
             self.superScrollView.jq_offsetY = self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h;
-            self.childScrollView.showsVerticalScrollIndicator = YES;
         }
-        else if (self.childScrollView.jq_offsetY != 0)
+        else if (self.superScrollView.jq_offsetY < 0)
         {
-            self.childScrollView.jq_offsetY = 0;
-            self.childScrollView.showsVerticalScrollIndicator = NO;
+            if (self.topBounceType == JQHoverTopBounceTypeSub)
+            {
+                self.superScrollView.jq_offsetY = 0;
+            }
         }
+        else if (self.superScrollView.jq_offsetY != self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h && self.superScrollView.jq_offsetY != 0)
+        {
+            if (self.childScrollView.jq_offsetY > fabs(new - old) + 1)
+            {
+                self.superScrollView.jq_offsetY = self.superScrollView.jq_contentH - self.superScrollView.jq_h + self.jq_h;
+            }
+            if (self.topBounceType == JQHoverTopBounceTypeSub && self.childScrollView.jq_offsetY < -fabs(new - old) - 1)
+            {
+                self.superScrollView.jq_offsetY = 0;
+                return;
+            }
+            if (self.topBounceType == JQHoverTopBounceTypeSub && self.childScrollView.jq_offsetY < 0)
+            {
+                self.childScrollView.jq_offsetY = 0;
+            }
+        }
+        if (self.childScrollView.jq_offsetY < 0)
+        {
+            if (self.topBounceType == JQHoverTopBounceTypeMain)
+            {
+                self.childScrollView.jq_offsetY = 0;
+            }
+        }
+        else if (self.childScrollView.jq_offsetY > 0)
+        {
+            if (delta > fabs(new - old) + 1)
+            {
+                self.childScrollView.jq_offsetY = 0;
+            }
+        }
+        self.childScrollView.showsVerticalScrollIndicator = self.childScrollView.jq_offsetY != 0;
+        self.superScrollView.showsVerticalScrollIndicator = !self.childScrollView.showsVerticalScrollIndicator;
     }
 }
 

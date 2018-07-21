@@ -25,7 +25,7 @@
 }
 
 // 供子类重写
-- (UIViewController <JQHoverControllerDelegate> *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
+- (UIViewController <JQSubpageControllerDelegate> *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     return nil;
 }
 
