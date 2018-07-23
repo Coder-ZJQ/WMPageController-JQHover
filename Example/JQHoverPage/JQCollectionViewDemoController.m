@@ -7,10 +7,9 @@
 //
 
 #import "JQCollectionViewDemoController.h"
-#import "JQHoverFooterView.h"
-#import "UIScrollView+JQHover.h"
+#import "JQHoverPage.h"
 #import "JQDemoPageController.h"
-
+#import "MJRefresh.h"
 
 @interface JQCollectionViewDemoController ()
 
@@ -27,6 +26,11 @@ static NSString * const reuseIdentifier = @"Cell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.collectionView.mj_header endRefreshing];
+        });
+    }];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
     layout.itemSize = CGSizeMake(40, 40);
@@ -66,14 +70,12 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 100;
+    return 30;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.backgroundColor = [UIColor redColor];
-    // Configure the cell
-    
     return cell;
 }
 

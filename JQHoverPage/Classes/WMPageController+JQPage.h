@@ -1,9 +1,8 @@
 //
-//  JQPageController.h
-//  ScrollView
+//  WMPageController+JQPage.h
+//  JQHoverPage
 //
-//  Created by Joker on 2018/5/22.
-//  Copyright © 2018年 fanwe. All rights reserved.
+//  Created by Joker on 2018/7/23.
 //
 
 #import "WMPageController.h"
@@ -14,7 +13,7 @@
 
 @end
 
-@interface JQPageController : WMPageController
+@interface WMPageController (JQPage)
 
 - (UIViewController <JQSubpageControllerDelegate> *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index;
 

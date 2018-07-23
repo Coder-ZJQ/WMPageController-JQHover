@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JQPageController.h"
+#import "WMPageController+JQPage.h"
 
 @interface JQDemoSubpageController : UITableViewController <JQSubpageControllerDelegate>
 

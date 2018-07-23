@@ -7,9 +7,9 @@
 //
 
 #import "JQTableViewDemoController.h"
-#import "JQHoverFooterView.h"
-#import "UIScrollView+JQHover.h"
+#import "JQHoverPage.h"
 #import "JQDemoPageController.h"
+#import "MJRefresh.h"
 
 @interface JQTableViewDemoController ()
 
@@ -23,9 +23,14 @@
     // set up the tableView
     self.tableView.tableFooterView = [UIView new];
     self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.tableView.mj_header endRefreshing];
+        });
+    }];
     
     // setup the table header view
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 200)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
     label.backgroundColor = [UIColor redColor];
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;

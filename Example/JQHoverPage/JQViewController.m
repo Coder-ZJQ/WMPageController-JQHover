@@ -7,7 +7,6 @@
 //
 
 #import "JQViewController.h"
-#import "JQTableViewDemoController.h"
 
 @interface JQViewController ()
 

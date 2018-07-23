@@ -7,3 +7,4 @@
 
 #import "JQHoverFooterView.h"
 #import "UIScrollView+JQHover.h"
+#import "WMPageController+JQPage.h"

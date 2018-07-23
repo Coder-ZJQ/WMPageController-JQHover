@@ -3,13 +3,13 @@
 //  ScrollView
 //
 //  Created by Joker on 2018/5/22.
-//  Copyright © 2018年 fanwe. All rights reserved.
+//  Copyright © 2018年 Joker. All rights reserved.
 //
 
 #import "JQHoverFooterView.h"
 #import "UIView+JQExtension.h"
 #import "UIScrollView+JQExtension.h"
-#import "JQPageController.h"
+#import "WMPageController+JQPage.h"
 
 @interface JQHoverFooterView () <WMPageControllerDelegate>
 
@@ -22,44 +22,23 @@
 
 @implementation JQHoverFooterView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        // 设置默认
-        self.topBounceType = JQHoverTopBounceTypeMain;
-    }
-    return self;
-}
+#pragma mark -
+#pragma mark - override
 
 - (void)dealloc
 {
-    NSLog(@"dealloc %@", NSStringFromClass(self.class));
     if (self.childScrollView) {
         [self.childScrollView removeObserver:self forKeyPath:@"contentOffset"];
     }
     self.superScrollView = nil;
 }
 
-- (void)setPage:(JQPageController *)page {
-    _page = page;
-    _page.delegate = self;
-    [self addSubview:page.view];
-}
-/**
- 利用 childScrollView 的 setter 方法动态添加/移除监听
-
- @param childScrollView 当前页面的 UIScrollView
- */
-- (void)setChildScrollView:(UIScrollView *)childScrollView
-{
-    // 移除旧的监听
-    if (_childScrollView) {
-        [_childScrollView removeObserver:self forKeyPath:@"contentOffset"];
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        // 设置默认
+        self.topBounceType = JQHoverTopBounceTypeMain;
     }
-    // 赋值
-    _childScrollView = childScrollView;
-    // 添加新的监听
-    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
-    [_childScrollView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
+    return self;
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -85,10 +64,35 @@
 }
 
 #pragma mark -
+#pragma mark - setter
+
+- (void)setPage:(WMPageController *)page {
+    _page = page;
+    _page.delegate = self;
+    [self addSubview:page.view];
+}
+/**
+ 利用 childScrollView 的 setter 方法动态添加/移除监听
+
+ @param childScrollView 当前页面的 UIScrollView
+ */
+- (void)setChildScrollView:(UIScrollView *)childScrollView
+{
+    // 移除旧的监听
+    if (_childScrollView) {
+        [_childScrollView removeObserver:self forKeyPath:@"contentOffset"];
+    }
+    // 赋值
+    _childScrollView = childScrollView;
+    // 添加新的监听
+    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
+    [_childScrollView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
+}
+
+#pragma mark -
 #pragma mark - WMPageControllerDelegate
 
 - (void)pageController:(WMPageController *)pageController didEnterViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info {
-    // 当要移动到其他页面时，设置当前子 UIScrollView
     // 当要移动到其他页面时，设置当前子 UIScrollView
     if ([viewController conformsToProtocol:@protocol(JQSubpageControllerDelegate)] && [viewController respondsToSelector:@selector(scrollView)]) {
         UIViewController<JQSubpageControllerDelegate> *vc = viewController;

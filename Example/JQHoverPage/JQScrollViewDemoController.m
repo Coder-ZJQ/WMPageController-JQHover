@@ -7,9 +7,9 @@
 //
 
 #import "JQScrollViewDemoController.h"
-#import "JQHoverFooterView.h"
-#import "UIScrollView+JQHover.h"
+#import "JQHoverPage.h"
 #import "JQDemoPageController.h"
+#import "MJRefresh.h"
 
 @interface JQScrollViewDemoController ()
 
@@ -23,6 +23,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.scrollView.mj_header endRefreshing];
+        });
+    }];
     
     // 1. init the hover footer view page
     CGFloat height = [UIScreen mainScreen].bounds.size.height - CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) - CGRectGetHeight(self.navigationController.navigationBar.frame);

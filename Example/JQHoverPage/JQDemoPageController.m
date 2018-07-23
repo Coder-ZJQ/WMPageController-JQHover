@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.menuView.backgroundColor = [UIColor colorWithWhite:.9f alpha:1.f];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,7 +33,7 @@
 }
 
 - (NSString *)menuView:(WMMenuView *)menu titleAtIndex:(NSInteger)index {
-    return [NSString stringWithFormat:@"page %ld", index];
+    return [NSString stringWithFormat:@"page %ld", (long)index];
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView {
@@ -44,10 +44,14 @@
     return CGRectMake(0, 36, kScreenW, kScreenH - 64 -36);
 }
 
-- (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
+//- (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
+//    JQDemoSubpageController *vc = [[JQDemoSubpageController alloc] init];
+//    return vc;
+//}
+
+- (UIViewController<JQSubpageControllerDelegate> *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
     JQDemoSubpageController *vc = [[JQDemoSubpageController alloc] init];
     return vc;
 }
-
 
 @end

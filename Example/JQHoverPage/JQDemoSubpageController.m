@@ -7,6 +7,7 @@
 //
 
 #import "JQDemoSubpageController.h"
+#import "MJRefresh.h"
 
 @interface JQDemoSubpageController ()
 
@@ -18,6 +19,11 @@
     [super viewDidLoad];
     self.tableView.rowHeight = 44.f;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.tableView.mj_footer endRefreshing];
+        });
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,12 +34,12 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"cell %ld", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"cell %ld", (long)indexPath.row];
     return cell;
 }
 

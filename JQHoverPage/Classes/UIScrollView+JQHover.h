@@ -3,7 +3,7 @@
 //  ScrollView
 //
 //  Created by Joker on 2018/5/22.
-//  Copyright © 2018年 fanwe. All rights reserved.
+//  Copyright © 2018年 Joker. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

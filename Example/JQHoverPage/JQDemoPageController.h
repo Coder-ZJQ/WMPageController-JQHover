@@ -6,8 +6,8 @@
 //  Copyright © 2018年 coder-zjq. All rights reserved.
 //
 
-#import "JQPageController.h"
+#import "WMPageController+JQPage.h"
 
-@interface JQDemoPageController : JQPageController
+@interface JQDemoPageController : WMPageController
 
 @end
