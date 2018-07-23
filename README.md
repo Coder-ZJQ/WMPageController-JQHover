@@ -9,7 +9,7 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-![Example](https://github.com/Coder-ZJQ/WMPageController-JQHover/blob/master/images/demo.gif?raw=true)
+![Example](https://raw.githubusercontent.com/Coder-ZJQ/WMPageController-JQHover/master/Images/demo.gif)
 
 ## Requirements
 
