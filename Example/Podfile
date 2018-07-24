@@ -1,10 +1,11 @@
+use_frameworks!
 
-target 'JQHoverPage_Example' do
-  pod 'JQHoverPage', :path => '../'
+target 'WMPageController-JQHover_Example' do
+  pod 'WMPageController-JQHover', :path => '../'
   pod 'MJRefresh'
-  target 'JQHoverPage_Tests' do
+  target 'WMPageController-JQHover_Tests' do
     inherit! :search_paths
 
-
+    
   end
 end

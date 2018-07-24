@@ -39,14 +39,14 @@ Main Page
 @implementation JQDemoPageController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.menuView.backgroundColor = [UIColor colorWithWhite:.9f alpha:1.f];
+[super viewDidLoad];
+self.menuView.backgroundColor = [UIColor colorWithWhite:.9f alpha:1.f];
 }
 
 // the view controller should confirm the JQSubpageControllerDelegate protocol
 - (UIViewController<JQSubpageControllerDelegate> *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index {
-    JQDemoSubpageController *vc = [[JQDemoSubpageController alloc] init];
-    return vc;
+JQDemoSubpageController *vc = [[JQDemoSubpageController alloc] init];
+return vc;
 }
 ```
 
@@ -59,7 +59,7 @@ Sub Page
 @interface JQDemoSubpageController : UITableViewController <JQSubpageControllerDelegate>
 
 @end
-    
+
 
 @implementation JQDemoSubpageController
 
@@ -68,7 +68,7 @@ Sub Page
 
 // implementation JQSubpageControllerDelegate protocol, return the subpage scrollView.
 - (UIScrollView *)scrollView {
-    return self.tableView;
+return self.tableView;
 }
 ```
 
@@ -144,3 +144,4 @@ coder-zjq, zjq_joker@163.com
 ## License
 
 JQHoverPage is available under the MIT license. See the LICENSE file for more info.
+

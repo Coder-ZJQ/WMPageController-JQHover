@@ -1,0 +1,6 @@
+framework module Pods_WMPageController_JQHover_Tests {
+  umbrella header "Pods-WMPageController-JQHover_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

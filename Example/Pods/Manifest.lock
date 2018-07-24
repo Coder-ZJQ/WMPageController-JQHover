@@ -1,12 +1,12 @@
 PODS:
-  - JQHoverPage (0.1.0):
-    - WMPageController
   - MJRefresh (3.1.15.3)
   - WMPageController (2.5.2)
+  - WMPageController-JQHover (0.1.0):
+    - WMPageController
 
 DEPENDENCIES:
-  - JQHoverPage (from `../`)
   - MJRefresh
+  - WMPageController-JQHover (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -14,14 +14,14 @@ SPEC REPOS:
     - WMPageController
 
 EXTERNAL SOURCES:
-  JQHoverPage:
+  WMPageController-JQHover:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JQHoverPage: ddd6e6c1711a206f29298a257b2e09e84924265c
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
+  WMPageController-JQHover: cf96b56ddfc48da5d367410863ce483e2d64a90d
 
-PODFILE CHECKSUM: fdae4f406be793f77958095f7f08d4c9fc5098a4
+PODFILE CHECKSUM: db5828401da4c67c1c914a487342ff45f5ac7872
 
 COCOAPODS: 1.5.3

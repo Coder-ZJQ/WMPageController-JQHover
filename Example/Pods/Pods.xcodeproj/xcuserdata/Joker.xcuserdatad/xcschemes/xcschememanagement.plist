@@ -4,22 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>JQHoverPage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-JQHoverPage_Example.xcscheme</key>
+		<key>Pods-WMPageController-JQHover_Example.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-JQHoverPage_Tests.xcscheme</key>
+		<key>Pods-WMPageController-JQHover_Tests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>WMPageController-JQHover.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

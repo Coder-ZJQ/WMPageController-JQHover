@@ -1,0 +1,6 @@
+framework module WMPageController_JQHover {
+  umbrella header "WMPageController-JQHover-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,8 +1,8 @@
 //
-//  JQHoverPageTests.m
-//  JQHoverPageTests
+//  WMPageController-JQHoverTests.m
+//  WMPageController-JQHoverTests
 //
-//  Created by coder-zjq on 06/09/2018.
+//  Created by coder-zjq on 07/24/2018.
 //  Copyright (c) 2018 coder-zjq. All rights reserved.
 //
 
