@@ -22,11 +22,11 @@ Extension of WMPageController, implement pages hover menu.
 Same style as WMPageController. Painless to use.
                        DESC
 
-  s.homepage         = 'https://github.com/coder-zjq/JQHoverPage'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/Coder-ZJQ/WMPageController-JQHover'
+  s.screenshots      = 'https://raw.githubusercontent.com/Coder-ZJQ/WMPageController-JQHover/master/Images/demo.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'coder-zjq' => 'zjq_joker@163.com' }
-  s.source           = { :git => 'https://github.com/coder-zjq/JQHoverPage.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/Coder-ZJQ/WMPageController-JQHover.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
