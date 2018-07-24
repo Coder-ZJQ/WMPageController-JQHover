@@ -1,7 +1,6 @@
 
 target 'JQHoverPage_Example' do
   pod 'JQHoverPage', :path => '../'
-  pod 'WMPageController'
   pod 'MJRefresh'
   target 'JQHoverPage_Tests' do
     inherit! :search_paths

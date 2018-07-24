@@ -1,9 +1,10 @@
 {
   "name": "JQHoverPage",
   "version": "0.1.0",
-  "summary": "A short description of JQHoverPage.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/coder-zjq/JQHoverPage",
+  "summary": "Extension of WMPageController, implement pages hover menu.",
+  "description": "Extension of WMPageController, implement pages hover menu.\nSame style as WMPageController. Painless to use.",
+  "homepage": "https://github.com/Coder-ZJQ/WMPageController-JQHover",
+  "screenshots": "https://raw.githubusercontent.com/Coder-ZJQ/WMPageController-JQHover/master/Images/demo.gif",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,13 +13,14 @@
     "coder-zjq": "zjq_joker@163.com"
   },
   "source": {
-    "git": "https://github.com/coder-zjq/JQHoverPage.git",
+    "git": "https://github.com/Coder-ZJQ/WMPageController-JQHover.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
   "source_files": "JQHoverPage/Classes/**/*",
+  "public_header_files": "JQHoverPage/Classes/**/*.h",
   "dependencies": {
     "WMPageController": [
 

@@ -37,7 +37,7 @@ Same style as WMPageController. Painless to use.
   #   'JQHoverPage' => ['JQHoverPage/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'JQHoverPage/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'WMPageController'
 end

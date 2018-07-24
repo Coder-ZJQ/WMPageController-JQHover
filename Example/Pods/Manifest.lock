@@ -7,7 +7,6 @@ PODS:
 DEPENDENCIES:
   - JQHoverPage (from `../`)
   - MJRefresh
-  - WMPageController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -19,10 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JQHoverPage: c6a95630f7abb910de17f99fdd38bb85676cb82f
+  JQHoverPage: ddd6e6c1711a206f29298a257b2e09e84924265c
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
 
-PODFILE CHECKSUM: e46a5e9c2ec87beddc0bccda01b2695e28cfdded
+PODFILE CHECKSUM: fdae4f406be793f77958095f7f08d4c9fc5098a4
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

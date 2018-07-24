@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "228D40FF0EFD016B5F42502A9E930126"
+               BlueprintIdentifier = "01DDD6F754C66C86142C49D3C7EDA256"
                BlueprintName = "Pods-JQHoverPage_Tests"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-JQHoverPage_Tests.a">
