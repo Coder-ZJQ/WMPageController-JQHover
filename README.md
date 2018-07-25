@@ -1,9 +1,8 @@
 # JQHoverPage
 
-[![CI Status](https://img.shields.io/travis/coder-zjq/JQHoverPage.svg?style=flat)](https://travis-ci.org/coder-zjq/JQHoverPage)
-[![Version](https://img.shields.io/cocoapods/v/JQHoverPage.svg?style=flat)](https://cocoapods.org/pods/JQHoverPage)
-[![License](https://img.shields.io/cocoapods/l/JQHoverPage.svg?style=flat)](https://cocoapods.org/pods/JQHoverPage)
-[![Platform](https://img.shields.io/cocoapods/p/JQHoverPage.svg?style=flat)](https://cocoapods.org/pods/JQHoverPage)
+[![Version](https://img.shields.io/cocoapods/v/WMPageController-JQHover.svg?style=flat)](https://cocoapods.org/pods/WMPageController-JQHover)
+[![License](https://img.shields.io/cocoapods/l/WMPageController-JQHover.svg?style=flat)](https://cocoapods.org/pods/WMPageController-JQHover)
+[![Platform](https://img.shields.io/cocoapods/p/WMPageController-JQHover.svg?style=flat)](https://cocoapods.org/pods/JQHoverPage)
 
 ## Example
 
