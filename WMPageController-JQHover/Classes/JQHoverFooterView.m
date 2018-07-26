@@ -63,6 +63,13 @@
     }
 }
 
+- (void)removeFromSuperview {
+    if (self.superScrollView) {
+        self.superScrollView.jq_insetB -= self.jq_h;
+    }
+    [super removeFromSuperview];
+}
+
 #pragma mark -
 #pragma mark - setter
 
